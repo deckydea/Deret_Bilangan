@@ -23,7 +23,7 @@ public class Main {
                 else return;
             }
 
-            //Repeat everytime the input error.
+            //User can repeat everytime the input error.
             while (true) {
                 System.out.print("Masukan NIM Anda [harus 10 karakter]     : ");
                 nim = input.next();
