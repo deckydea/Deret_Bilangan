@@ -8,14 +8,13 @@ public class Main {
         String nim;
         int numberSize;
 
-
         while (true) {
 
             System.out.print("Masukan Nama Anda [1...25]               : ");
-            name = input.next();
+            name = input.nextLine();
 
             //Validate the length of a name, must be greater than 1 and less than 25
-            if (validateLength(name, 1, 25)) {
+            if (validateLength(name.length(), 1, 25)) {
                 System.out.println("Nama tidak sesuai. Panjang karakter nama minimal 1 dan maksimal 25\n");
 
                 //Confirm if the user want to repeat the input
@@ -26,10 +25,10 @@ public class Main {
             //User can repeat everytime the input error.
             while (true) {
                 System.out.print("Masukan NIM Anda [harus 10 karakter]     : ");
-                nim = input.next();
+                nim = input.nextLine();
 
                 //Validate the length of a nim, must be 10
-                if (validateLength(nim, 10, 10)) {
+                if (validateLength(nim.length(), 10, 10)) {
                     System.out.println("NIM tidak sesuai. Panjang karakter NIM minimal 1 dan maksimal 25\n");
 
                     //Confirm if the user want to repeat the input
@@ -48,8 +47,23 @@ public class Main {
             System.out.println("Mari belajar macam-macam deret bilangan..");
 
             System.out.println("\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-            System.out.print("Masukan Sembarangan Angka [5..20] : ");
-            numberSize = input.nextInt();
+
+            //User can repeat everytime the input error.
+            while (true) {
+                System.out.print("Masukan Sembarangan Angka [5..20] : ");
+                numberSize = input.nextInt();
+
+                //Validate the length of a nim, must be 10
+                if (validateLength(numberSize, 5, 20)) {
+                    System.out.println("Jumlah angka tidak sesuai. Masukan angka dengan ketentuan: minimal 5 dan maksimal 20\n");
+
+                    //Confirm if the user want to repeat the input
+                    if (confirmIsRepeat()) continue;
+                    else return;
+                }
+                break;
+            }
+
             System.out.println("\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 
             System.out.println("Deret Bilangan");
@@ -65,7 +79,7 @@ public class Main {
             populateFibonacci(numberSize);
 
             //Confirm if the user want to repeat the program
-            if (!confirmIsRepeat()) return;
+            if (!confirmIsRepeat()) System.exit(0);
         }
     }
 
@@ -139,6 +153,7 @@ public class Main {
 
             if (value.equals("y") || value.equals("Y")) {
                 isRepeat = true;
+                input.nextLine();
 
                 //More space
                 System.out.println();
@@ -155,7 +170,7 @@ public class Main {
     }
 
     //Validating the length of string
-    private static boolean validateLength(String value, int minLength, int maxLength) {
-        return value.length() < minLength || value.length() > maxLength;
+    private static boolean validateLength(int lengthValue, int minLength, int maxLength) {
+        return lengthValue < minLength || lengthValue > maxLength;
     }
 }
