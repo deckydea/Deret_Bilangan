@@ -169,7 +169,7 @@ public class Main {
         return isRepeat;
     }
 
-    //Validating the length of string
+    //Validating the length
     private static boolean validateLength(int lengthValue, int minLength, int maxLength) {
         return lengthValue < minLength || lengthValue > maxLength;
     }
